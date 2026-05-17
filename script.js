@@ -37,7 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         storedGrades.forEach((entry) => {
             const row = document.createElement('tr');
-            row.innerHTML = `<td>${entry.name}</td><td>${entry.grade.toFixed(2)}</td><td><button id="deleteBtn" data-id="${entry.id}" onclick="deleteGrade">Delete</button></td>`;
+            row.innerHTML = `<td>${entry.name}</td><td>${entry.grade.toFixed(2)}</td>`;
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.setAttribute('data-id', entry.id);
+            deleteBtn.addEventListener('click', () => {
+                deleteGrade(entry.id);
+            });
+            row.appendChild(deleteBtn);
             gradeTableBody.appendChild(row);
         });
     }
